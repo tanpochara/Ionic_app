@@ -12,43 +12,47 @@
       <ion-title size="large">search</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div id="fixed">
+    <ion-list>
+      <ion-radio-group value="biff" [(ngModel)]="searchBy">
+        <ion-list-header>
+          <ion-label>Search by</ion-label>
+        </ion-list-header>
+  
+        <ion-item>
+          <ion-label>student id</ion-label>
+          <ion-radio slot="start" value="id" ></ion-radio>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label>assingment</ion-label>
+          <ion-radio slot="start" value="assignment" ></ion-radio>
+        </ion-item>
+  
+      </ion-radio-group>
+    </ion-list>
 
-  <ion-list>
-    <ion-radio-group value="biff" [(ngModel)]="searchBy">
-      <ion-list-header>
-        <ion-label>Search by</ion-label>
-      </ion-list-header>
+    <ion-item>
+      <ion-label position="floating"> input key word</ion-label>
+      <ion-input [(ngModel)]="keyword" placeholder = "enter keyword" position="floating"></ion-input>
+    </ion-item>
+    <ion-button expand="block" shape="round" (click) ="getData()"> search </ion-button>
+  </div>
   
-      <ion-item>
-        <ion-label>student id</ion-label>
-        <ion-radio slot="start" value="id" ></ion-radio>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label>assingment</ion-label>
-        <ion-radio slot="start" value="assignment" ></ion-radio>
-      </ion-item>
-  
-    </ion-radio-group>
-  </ion-list>
-
-  <ion-item>
-    <ion-label position="floating"> input key word</ion-label>
-    <ion-input [(ngModel)]="keyword" placeholder = "enter keyword" position="floating"></ion-input>
-  </ion-item>
-  <ion-button expand="block" shape="round" click="getData()"> search </ion-button>
-  
-  <ion-card *ngFor = "let item of data">
-    <ion-card-header>id: {{item.student_id}} </ion-card-header>
-    <ion-card-content> 
-      <p><b> Q1 : </b>{{item.Q1}}</p>
-      <p><b> Q2 : </b>{{item.Q2}}</p>
-      <p><b> Q3 : </b>{{item.Q3}}</p>
-      <p><b> Q4 : </b>{{item.Q4}}</p>
-      <p><b> Q5 : </b>{{item.Q5}}</p>
-    </ion-card-content>
-  </ion-card>
-  
+  <div *ngIf = "data$ | async as datas">
+    <ion-card *ngFor = "let item of datas.data">
+      <ion-card-header><b> Assignment: </b> {{item.Assignment}} </ion-card-header>
+      <ion-card-content> 
+        <p><b> id : </b>{{item.student_id}}</p>
+        <p><b> Q1 : </b>{{item.Q1}}</p>
+        <p><b> Q2 : </b>{{item.Q2}}</p>
+        <p><b> Q3 : </b>{{item.Q3}}</p>
+        <p><b> Q4 : </b>{{item.Q4}}</p>
+        <p><b> Q5 : </b>{{item.Q5}}</p>
+        <p><b> comment : </b>{{item.Comment}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
 
   

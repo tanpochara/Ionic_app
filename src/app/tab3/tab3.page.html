@@ -14,7 +14,27 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
-  
+
+  <div id="form">
+    <b>assignment name</b>
+    <ion-input placeholder="assignment" [(ngModel)]="assignment" required></ion-input>
+    <b>student id</b>
+    <ion-input placeholder="student id" [(ngModel)]="id" required></ion-input>
+    <ion-item>
+      <ion-label position="stacked"><b>Scores</b></ion-label>
+      <ion-input placeholder="Question 1" type="number" max="25" min="0" [(ngModel)]="q1"></ion-input>
+      <ion-input placeholder="Question 2" type="number" max="25" min="0" [(ngModel)]="q2"></ion-input>
+      <ion-input placeholder="Question 3" type="number" max="25" min="0" [(ngModel)]="q3"></ion-input>
+      <ion-input placeholder="Question 4" type="number" max="25" min="0" [(ngModel)]="q4"></ion-input>
+      <ion-input placeholder="Question 5" type="number" max="25" min="0" [(ngModel)]="q5"></ion-input>
+    </ion-item>
+    <b>additional comment</b>
+    <ion-input placeholder="comments" [(ngModel)]="comment"></ion-input>
+  </div>
+  <ion-button style="padding-left: 50%;" (click) = "insert()">
+    <ion-icon slot="start" name="star"></ion-icon>
+    upload
+  </ion-button>
 
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>

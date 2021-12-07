@@ -16,6 +16,8 @@ export class Tab2Page {
 
   getData(){
     this.data$ = this.provider.getDataInfi(this.searchBy,this.keyword);
+    console.log('getData() called');
+    this.provider.postData('hello','123','10','20','10','20','10','verygood');
   }
 
 }
