@@ -6,7 +6,7 @@ import { Data } from 'model/data.model';
   providedIn: 'root'
 })
 export class DataProviderService {
-  private url = 'http://d6a7-35-245-121-13.ngrok.io';
+  private url = 'http://89e8-34-74-240-93.ngrok.io';
   constructor(public http: HttpClient) { }
 
   getDataInfi(searchBy: string, keyword: string){
@@ -22,6 +22,24 @@ export class DataProviderService {
         // eslint-disable-next-line @typescript-eslint/dot-notation
         for (const x of data['data']){
           console.log(x);
+        }
+      }
+    );
+  }
+
+  getAssignment(){
+    return this.http.get<Data>(this.url+'/assignments');
+  }
+
+  getChart(assignment: string, x: any, y: any, lineChart: any){
+    this.http.get(this.url+'/chart?assignment='+assignment).subscribe( data=> {
+      // eslint-disable-next-line @typescript-eslint/dot-notation
+      for (const item of data['data']){
+          // eslint-disable-next-line @typescript-eslint/dot-notation
+          x.push(item['Assignment']);
+          // eslint-disable-next-line @typescript-eslint/dot-notation
+          y.push(item['total_score']);
+          lineChart.update(0);
         }
       }
     );

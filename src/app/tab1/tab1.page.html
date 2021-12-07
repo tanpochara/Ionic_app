@@ -7,16 +7,28 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title>
-        Analyze student score
-      </ion-title>
-    </ion-toolbar>
-    
-  </ion-header>
-
+  <ion-header collapse="condense"></ion-header>
+  <ion-title style="width: 100%; padding-top:20px; padding-bottom:10px;"> please select assignment</ion-title>
+  <ion-item>
+    <ion-label>Assignment</ion-label>
+    <ion-select interface="popover" [(ngModel)] = "selected">
+      <div *ngIf = "assignments$ | async as assigns"> 
+        <div *ngFor = "let item of assigns.data">
+          <ion-select-option value="{{item}}"> {{item}} </ion-select-option>
+        </div>
+      </div>
+    </ion-select>
+  </ion-item>
+  <ion-button (click) = "plotChart()">go!!</ion-button>
   
+  <ion-card>
+    <ion-card-header>
+      line chart
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+    </ion-card-content>
+  </ion-card>
 
   <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>
