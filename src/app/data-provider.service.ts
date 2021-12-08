@@ -6,18 +6,26 @@ import { Data } from 'model/data.model';
   providedIn: 'root'
 })
 export class DataProviderService {
-  private url = 'http://89e8-34-74-240-93.ngrok.io';
+  private url = 'http://5b11-34-75-22-29.ngrok.io';
   constructor(public http: HttpClient) { }
 
-  getDataInfi(searchBy: string, keyword: string){
+  getDataInfi(searchBy: string, keyword: string, retdata: any, count: number, event){
     console.log('getDataInfi() called');
-    return this.http.get<Data>(this.url+'/get_data?searchBy='+searchBy+'&keyword='+keyword);
+    this.http.get(this.url+'/get_data?searchBy='+searchBy+'&keyword='+keyword+'&count='+count).subscribe( data=>{
+      // eslint-disable-next-line @typescript-eslint/dot-notation
+      for (const x of data['data']) {
+        retdata.push(x);
+      }
+    });
+    if(event != null){
+      event.target.complete();
+    }
   }
 
   postData(assignment: string,id: string, q1: string,q2: string,q3: string,q4: string,q5: string,comment: string){
     console.log('finish upload');
     // eslint-disable-next-line max-len
-    this.http.get(this.url+'/insert?student_id='+id+'&Q1='+q1+'&Q2='+q2+'&Q3='+q3+'&Q4='+q4+'&Q5='+q5+'&comment='+comment+'&Assignment'+assignment).subscribe(
+    this.http.get(this.url+'/insert?student_id='+id+'&Q1='+q1+'&Q2='+q2+'&Q3='+q3+'&Q4='+q4+'&Q5='+q5+'&comment='+comment+'&Assignment='+assignment).subscribe(
       data=> {
         // eslint-disable-next-line @typescript-eslint/dot-notation
         for (const x of data['data']){

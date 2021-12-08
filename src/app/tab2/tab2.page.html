@@ -39,8 +39,7 @@
     <ion-button expand="block" shape="round" (click) ="getData()"> search </ion-button>
   </div>
   
-  <div *ngIf = "data$ | async as datas">
-    <ion-card *ngFor = "let item of datas.data">
+    <ion-card *ngFor = "let item of data">
       <ion-card-header><b> Assignment: </b> {{item.Assignment}} </ion-card-header>
       <ion-card-content> 
         <p><b> id : </b>{{item.student_id}}</p>
@@ -52,7 +51,12 @@
         <p><b> comment : </b>{{item.Comment}}</p>
       </ion-card-content>
     </ion-card>
-  </div>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="getData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 
   

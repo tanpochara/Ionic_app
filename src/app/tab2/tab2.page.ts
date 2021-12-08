@@ -11,13 +11,18 @@ import { Data } from 'model/data.model';
 export class Tab2Page {
   public searchBy: string;
   public keyword: string; //ใช้ได้
-  public data$: Observable<Data>;
+  public data = [];
+  public count = 0;
   constructor(private provider: DataProviderService) {}
 
   getData(){
-    this.data$ = this.provider.getDataInfi(this.searchBy,this.keyword);
+    if(this.count === 0){
+      this.provider.getDataInfi(this.searchBy,this.keyword,this.data,this.count,null);
+    }else{
+      this.provider.getDataInfi(this.searchBy,this.keyword,this.data,this.count,event);
+    }
+    this.count++;
     console.log('getData() called');
-    this.provider.postData('hello','123','10','20','10','20','10','verygood');
   }
 
 }
