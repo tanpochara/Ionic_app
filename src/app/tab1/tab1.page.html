@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class = "test">
   <ion-header collapse="condense"></ion-header>
   <ion-title style="width: 100%; padding-top:20px; padding-bottom:10px;"> please select assignment</ion-title>
   <ion-item>
@@ -19,11 +19,11 @@
       </div>
     </ion-select>
   </ion-item>
-  <ion-button (click) = "plotChart()">go!!</ion-button>
+  <ion-button (click) = "plotChart()" style="display: flex; align-items:left;">go!!</ion-button>
   
-  <ion-card>
+  <ion-card style="width: 100vw; height: 60vh;">
     <ion-card-header>
-      line chart
+      {{selected}}
     </ion-card-header>
     <ion-card-content>
       <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>

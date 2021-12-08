@@ -6,7 +6,7 @@ import { Data } from 'model/data.model';
   providedIn: 'root'
 })
 export class DataProviderService {
-  private url = 'http://5b11-34-75-22-29.ngrok.io';
+  private url = 'http://d68f-34-75-22-29.ngrok.io';
   constructor(public http: HttpClient) { }
 
   getDataInfi(searchBy: string, keyword: string, retdata: any, count: number, event){

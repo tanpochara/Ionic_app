@@ -38,7 +38,7 @@
     </ion-item>
     <ion-button expand="block" shape="round" (click) ="getData()"> search </ion-button>
   </div>
-  
+  <div style="padding-top: 270px;">
     <ion-card *ngFor = "let item of data">
       <ion-card-header><b> Assignment: </b> {{item.Assignment}} </ion-card-header>
       <ion-card-content> 
@@ -57,7 +57,7 @@
         loadingText="Loading more data...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
-
+  </div>
 
   
 
